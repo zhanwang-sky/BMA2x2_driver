@@ -8870,6 +8870,7 @@ struct bma2x2_accel_eight_resolution_temp *accel)
  *
  *
 */
+#if 0
 BMA2x2_RETURN_FUNCTION_TYPE bma2x2_get_fifo_data_output_reg(
 u8 *output_reg_u8)
 {
@@ -8894,3 +8895,4 @@ u8 *output_reg_u8)
 		}
 	return com_rslt;
 }
+#endif /* if 0 */
