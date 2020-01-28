@@ -489,11 +489,13 @@ burst_read(device_addr, register_addr, register_data, rd_len)
 /**************************************************************/
 /**\name	ERROR CODE DEFINITIONS    */
 /**************************************************************/
-#define E_OUT_OF_RANGE          ((s8)-2)
-#define E_BMA2x2_NULL_PTR       ((s8)-127)
 #define BMA2x2_NULL             ((void *)0)
-#define ERROR			((s8)-1)
-#define	SUCCESS			((u8)0)
+#define E_BMA2x2_NULL_PTR       ((s8)-127)
+#define E_BMA2x2_OUT_OF_RANGE   ((s8)-2)
+#define E_BMA2x2_INITIAL_CODE   ((s8)-1)
+
+#define C_BMA2x2_SUCCESS        (0)
+#define C_BMA2x2_FAILURE        (1)
 /**************************************************************/
 /**\name	RETURN TYPE DEFINITION    */
 /**************************************************************/
