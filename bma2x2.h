@@ -489,11 +489,11 @@ burst_read(device_addr, register_addr, register_data, rd_len)
 /**************************************************************/
 /**\name	ERROR CODE DEFINITIONS    */
 /**************************************************************/
-#define E_OUT_OF_RANGE          ((s8)-2)
-#define E_BMA2x2_NULL_PTR       ((s8)-127)
 #define BMA2x2_NULL             ((void *)0)
-#define ERROR			((s8)-1)
-#define	SUCCESS			((u8)0)
+#define E_BMA2x2_NULL_PTR       ((s8)-127)
+#define E_BMA2x2_OUT_OF_RANGE   ((s8)-2)
+#define BMA2x2_ERROR            ((s8)-1)
+#define BMA2x2_SUCCESS          ((u8)0)
 /**************************************************************/
 /**\name	RETURN TYPE DEFINITION    */
 /**************************************************************/
@@ -696,7 +696,7 @@ struct bma2x2_t {
  *    - Number of bytes to be read from the FIFO should be mapped to the member
  *     "fifo_length" of this structure
  */
-struct fifo_configuration {
+struct bma2x2_fifo_configuration {
 	/*! Data buffer of user defined length is to be mapped here */
 	u8 *fifo_data;
 	/*! Index of accel data stored in FIFO buffer */
@@ -5718,17 +5718,17 @@ u8 fifo_data_select_u8);
 /*!
  *  @brief This API reads the FIFO data from the register 0x3F
  *  and store the data in the user defined buffer mapped to the member
- *  of structure "fifo_configuration"
+ *  of structure "bma2x2_fifo_configuration"
  *
  *  @note Before calling this API user must map the following FIFO settings
- *  required to read the FIFO data to the structure "fifo_configuration"
+ *  required to read the FIFO data to the structure "bma2x2_fifo_configuration"
  *    - Data buffer to store the FIFO data is mapped to
  *      the structure member "fifo_data"
  *    - Number of bytes to be read from FIFO is mapped to
  *      the structure member "fifo_length"
  *
  *  @note The number of bytes to be read from the FIFO is specified in the
- *  member "fifo_length" of the structure "fifo_configuration"
+ *  member "fifo_length" of the structure "bma2x2_fifo_configuration"
  *
  *  @param[in,out] fifo_conf : Structure containing the FIFO configurations
  *  is passed as input and FIFO data of specified length is obtained as output
@@ -5739,7 +5739,7 @@ u8 fifo_data_select_u8);
  *
  */
 BMA2x2_RETURN_FUNCTION_TYPE bma2x2_read_fifo_data(
-			struct fifo_configuration *fifo_conf);
+			struct bma2x2_fifo_configuration *fifo_conf);
 
 /*!
  *  @brief This API extracts the accel data from the FIFO frames
@@ -5768,7 +5768,7 @@ BMA2x2_RETURN_FUNCTION_TYPE bma2x2_read_fifo_data(
  *
  */
 BMA2x2_RETURN_FUNCTION_TYPE bma2x2_extract_accel(union fifo_frame *accel_frame,
-		u8 *accel_frame_count, struct fifo_configuration *fifo_conf);
+		u8 *accel_frame_count, struct bma2x2_fifo_configuration *fifo_conf);
 /******************************************/
 /**\name FUNCTION FOR  TEMPERATURE DATA READ */
 /******************************************/
